@@ -1,0 +1,4 @@
+Grade Frequency:
+Grade A: 3 students
+Grade B: 2 students
+Grade C: 1 students
