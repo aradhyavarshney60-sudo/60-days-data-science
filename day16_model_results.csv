@@ -1,0 +1,7 @@
+Metric,Value
+Algorithm,K-Nearest Neighbors
+Distance Metric,Cosine Distance
+Best K,3
+Average Similarity,1.0
+Number of Movies,9742
+Number of Ratings,100836

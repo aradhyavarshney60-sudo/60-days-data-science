@@ -1,0 +1,31 @@
+title,genre_action,genre_comedy,genre_drama,genre_scifi,genre_romance,genre_animation,rating,popularity,year
+Inception,0,0,1,1,0,0,8.8,95,2010
+Interstellar,0,0,1,1,0,0,8.6,92,2014
+The Matrix,1,0,0,1,0,0,8.7,94,1999
+The Dark Knight,1,0,1,0,0,0,9.0,98,2008
+Avengers,1,0,0,1,0,0,8.0,96,2012
+Iron Man,1,0,0,0,0,0,7.9,91,2008
+Titanic,0,0,1,0,1,0,7.8,99,1997
+Avatar,1,0,0,1,0,0,7.8,97,2009
+Jurassic Park,1,0,0,0,0,0,8.2,95,1993
+The Lion King,0,0,0,0,0,1,8.5,93,1994
+Toy Story,0,1,0,0,0,1,8.3,90,1995
+Finding Nemo,0,0,0,0,0,1,8.2,88,2003
+The Notebook,0,0,1,0,1,0,7.8,85,2004
+La La Land,0,0,1,0,1,0,8.0,86,2016
+The Hangover,0,1,0,0,0,0,7.7,84,2009
+Home Alone,0,1,0,0,0,0,7.6,89,1990
+Harry Potter,1,0,1,0,1,0,7.6,94,2001
+Lord of the Rings,1,0,1,1,0,0,8.9,97,2003
+Star Wars,1,0,0,1,0,0,8.6,96,1977
+Guardians of the Galaxy,1,1,0,1,0,0,8.0,92,2014
+Spider-Man,1,1,0,1,0,0,7.4,95,2002
+Black Panther,1,0,1,1,0,0,7.3,90,2018
+Joker,1,0,1,0,0,0,8.4,91,2019
+Forrest Gump,0,0,1,0,1,0,8.8,98,1994
+Gladiator,1,0,1,0,0,0,8.5,89,2000
+The Godfather,1,0,1,0,0,0,9.2,96,1972
+Shrek,0,1,0,0,0,1,8.0,91,2001
+Frozen,0,0,0,0,1,1,7.4,94,2013
+Moana,0,0,0,0,1,1,8.0,90,2016
+Coco,0,0,1,0,0,1,8.4,87,2017

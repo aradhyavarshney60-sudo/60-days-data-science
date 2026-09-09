@@ -1,0 +1,26 @@
+K,Target_Movie,Recommended_Movie,Rating,Similarity
+3,Inception,Interstellar,8.6,0.9398
+3,Inception,Lord of the Rings,8.9,0.7037
+3,Inception,The Dark Knight,9.0,0.4074
+5,Inception,Interstellar,8.6,0.9398
+5,Inception,Lord of the Rings,8.9,0.7037
+5,Inception,The Dark Knight,9.0,0.4074
+5,Inception,The Matrix,8.7,0.3253
+5,Inception,Forrest Gump,8.8,0.3014
+7,Inception,Interstellar,8.6,0.9398
+7,Inception,Lord of the Rings,8.9,0.7037
+7,Inception,The Dark Knight,9.0,0.4074
+7,Inception,The Matrix,8.7,0.3253
+7,Inception,Forrest Gump,8.8,0.3014
+7,Inception,Avengers,8.0,0.2115
+7,Inception,Joker,8.4,0.1702
+10,Inception,Interstellar,8.6,0.9398
+10,Inception,Lord of the Rings,8.9,0.7037
+10,Inception,The Dark Knight,9.0,0.4074
+10,Inception,The Matrix,8.7,0.3253
+10,Inception,Forrest Gump,8.8,0.3014
+10,Inception,Avengers,8.0,0.2115
+10,Inception,Joker,8.4,0.1702
+10,Inception,The Godfather,9.2,0.1393
+10,Inception,Black Panther,7.3,0.1349
+10,Inception,Avatar,7.8,0.1331
