@@ -1,0 +1,2 @@
+Model,Criterion,Max_Depth,Training_Accuracy,Testing_Accuracy,Best_Depth_From_Analysis,Best_Test_Accuracy
+Decision Tree Classifier,Gini,5,0.9625,0.85,7,0.88
