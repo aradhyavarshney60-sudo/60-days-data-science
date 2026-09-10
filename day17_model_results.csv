@@ -1,2 +1,11 @@
-Model,Criterion,Max_Depth,Training_Accuracy,Testing_Accuracy,Best_Depth_From_Analysis,Best_Test_Accuracy
-Decision Tree Classifier,Gini,5,0.9625,0.85,7,0.88
+Metric,Value
+Training Accuracy,0.9475
+Testing Accuracy,0.83
+Precision,0.9154929577464789
+Recall,0.8552631578947368
+F1 Score,0.8843537414965986
+Accuracy Gap,0.11750000000000005
+Overfitting Status,Possible Overfitting
+Tree Depth,5
+Number of Training Samples,400
+Number of Testing Samples,100

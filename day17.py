@@ -1,76 +1,76 @@
 # ============================================================
-# DAY 17 - LOAN APPROVAL PREDICTION USING DECISION TREE
+# DAY 17 - LOAN APPROVAL PREDICTION USING DECISION TREES
+# 60 Days Data Science Challenge
 # ============================================================
 
 import os
+import warnings
+
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import OneHotEncoder
+from sklearn.impute import SimpleImputer
+from sklearn.pipeline import Pipeline
 
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier, plot_tree
 from sklearn.metrics import (
     accuracy_score,
-    classification_report,
+    precision_score,
+    recall_score,
+    f1_score,
     confusion_matrix,
-    ConfusionMatrixDisplay
+    classification_report
 )
 
+warnings.filterwarnings("ignore")
+
+
 # ============================================================
-# 1. CREATE / LOAD LOAN DATASET
+# 1. CONFIGURATION
+# ============================================================
+
+DATASET_FILE = "loan_approval_dataset.csv"
+
+PREDICTIONS_FILE = "day17_predictions.csv"
+MODEL_RESULTS_FILE = "day17_model_results.csv"
+FEATURE_IMPORTANCE_FILE = "day17_feature_importance.csv"
+
+CONFUSION_MATRIX_FILE = "day17_confusion_matrix.png"
+DECISION_TREE_FILE = "day17_decision_tree.png"
+FEATURE_IMPORTANCE_IMAGE = "day17_feature_importance.png"
+OVERFITTING_IMAGE = "day17_overfitting_analysis.png"
+
+RANDOM_STATE = 42
+
+
+# ============================================================
+# 2. LOAD DATASET
 # ============================================================
 
 print("=" * 60)
 print("DAY 17 - LOAN APPROVAL PREDICTION")
+print("Using Decision Trees")
 print("=" * 60)
 
-file_name = "loan_approval_dataset.csv"
+print("\nLoading loan approval dataset...")
 
-if os.path.exists(file_name):
+if not os.path.exists(DATASET_FILE):
+    print("\nDataset file not found.")
+    print(f"Please place '{DATASET_FILE}' in the project folder.")
+    raise FileNotFoundError(DATASET_FILE)
 
-    print("\nLoading existing loan dataset...")
-    df = pd.read_csv(file_name)
+df = pd.read_csv(DATASET_FILE)
 
-else:
-
-    print("\nLoan dataset not found.")
-    print("Creating sample loan approval dataset...")
-
-    np.random.seed(42)
-
-    n = 500
-
-    data = {
-        "Age": np.random.randint(21, 65, n),
-        "Income": np.random.randint(20000, 150000, n),
-        "Credit_Score": np.random.randint(300, 850, n),
-        "Loan_Amount": np.random.randint(5000, 100000, n),
-        "Employment_Years": np.random.randint(0, 30, n),
-        "Existing_Debt": np.random.randint(0, 80000, n),
-        "Savings": np.random.randint(1000, 100000, n)
-    }
-
-    df = pd.DataFrame(data)
-
-    # Create realistic loan approval rule
-    approval_score = (
-        (df["Credit_Score"] >= 650).astype(int)
-        + (df["Income"] >= 50000).astype(int)
-        + (df["Employment_Years"] >= 3).astype(int)
-        + (df["Savings"] >= 10000).astype(int)
-        + (df["Existing_Debt"] < 40000).astype(int)
-        + (df["Loan_Amount"] < df["Income"] * 1.2).astype(int)
-    )
-
-    df["Loan_Approved"] = (approval_score >= 4).astype(int)
-
-    df.to_csv(file_name, index=False)
-
-    print(f"Dataset created and saved as: {file_name}")
+print("Loan approval dataset loaded successfully.")
+print(f"Dataset shape: {df.shape}")
 
 
 # ============================================================
-# 2. BASIC DATA EXPLORATION
+# 3. BASIC DATA UNDERSTANDING
 # ============================================================
 
 print("\n" + "=" * 60)
@@ -80,307 +80,692 @@ print("=" * 60)
 print("\nFirst 5 rows:")
 print(df.head())
 
-print("\nDataset shape:")
-print(df.shape)
-
 print("\nColumn names:")
 print(df.columns.tolist())
+
+print("\nDataset information:")
+print(df.info())
 
 print("\nMissing values:")
 print(df.isnull().sum())
 
-print("\nBasic statistics:")
-print(df.describe())
+print("\nDuplicate rows:")
+print(df.duplicated().sum())
 
 
 # ============================================================
-# 3. IDENTIFY FEATURES AND TARGET
+# 4. CLEAN COLUMN NAMES
 # ============================================================
 
-target_column = "Loan_Approved"
+df.columns = (
+    df.columns
+    .str.strip()
+    .str.lower()
+    .str.replace(" ", "_")
+)
 
-X = df.drop(columns=[target_column])
-y = df[target_column]
+print("\nCleaned column names:")
+print(df.columns.tolist())
 
-print("\n" + "=" * 60)
-print("FEATURES AND TARGET")
-print("=" * 60)
 
-print("\nFeature columns:")
-print(X.columns.tolist())
+# ============================================================
+# 5. REMOVE DUPLICATES
+# ============================================================
 
-print("\nTarget column:")
-print(target_column)
+duplicate_count = df.duplicated().sum()
+
+if duplicate_count > 0:
+    df = df.drop_duplicates().reset_index(drop=True)
+    print(f"\nRemoved {duplicate_count} duplicate rows.")
+else:
+    print("\nNo duplicate rows found.")
+
+
+# ============================================================
+# 6. IDENTIFY TARGET COLUMN
+# ============================================================
+
+possible_targets = [
+    "loan_status",
+    "loan_approved",
+    "loan_approval",
+    "approved",
+    "approval",
+    "target",
+    "status"
+]
+
+target_column = None
+
+for column in possible_targets:
+    if column in df.columns:
+        target_column = column
+        break
+
+if target_column is None:
+    raise ValueError(
+        "Target column not found. Expected one of: "
+        + ", ".join(possible_targets)
+    )
+
+print(f"\nTarget column identified: {target_column}")
+
+
+# ============================================================
+# 7. CLEAN TARGET COLUMN
+# ============================================================
+
+df = df.dropna(subset=[target_column]).copy()
+
+# Remove extra spaces from string target values
+if df[target_column].dtype == "object":
+    df[target_column] = df[target_column].astype(str).str.strip()
+
+
+# ============================================================
+# 8. CONVERT TARGET TO NUMERIC
+# ============================================================
+
+target_values = df[target_column].unique()
+
+print("\nTarget values:")
+print(target_values)
+
+# Common loan approval values:
+# Y / N
+# Yes / No
+# Approved / Rejected
+# 1 / 0
+
+if df[target_column].dtype == "object":
+
+    target_lower = df[target_column].astype(str).str.lower().str.strip()
+
+    mapping = {
+        "y": 1,
+        "yes": 1,
+        "approved": 1,
+        "approve": 1,
+        "accepted": 1,
+        "accept": 1,
+        "1": 1,
+        "true": 1,
+
+        "n": 0,
+        "no": 0,
+        "rejected": 0,
+        "reject": 0,
+        "declined": 0,
+        "decline": 0,
+        "0": 0,
+        "false": 0
+    }
+
+    mapped_target = target_lower.map(mapping)
+
+    # If all values were successfully mapped
+    if mapped_target.notna().all():
+        df[target_column] = mapped_target.astype(int)
+
+    else:
+        # Generic binary encoding
+        unique_values = list(df[target_column].dropna().unique())
+
+        if len(unique_values) == 2:
+            generic_mapping = {
+                unique_values[0]: 0,
+                unique_values[1]: 1
+            }
+
+            df[target_column] = (
+                df[target_column]
+                .map(generic_mapping)
+                .astype(int)
+            )
+        else:
+            raise ValueError(
+                "Target column must contain two classes "
+                "for binary loan approval classification."
+            )
+
+else:
+    # Numeric target
+    unique_values = sorted(df[target_column].dropna().unique())
+
+    if len(unique_values) == 2:
+        if set(unique_values) != {0, 1}:
+            target_mapping = {
+                unique_values[0]: 0,
+                unique_values[1]: 1
+            }
+
+            df[target_column] = df[target_column].map(
+                target_mapping
+            ).astype(int)
+
+    else:
+        raise ValueError(
+            "Target column must contain exactly two classes."
+        )
+
 
 print("\nTarget distribution:")
-print(y.value_counts())
+print(df[target_column].value_counts())
 
 
 # ============================================================
-# 4. TRAIN TEST SPLIT
+# 9. PREPARE FEATURES AND TARGET
+# ============================================================
+
+X = df.drop(columns=[target_column]).copy()
+y = df[target_column].copy()
+
+
+# ============================================================
+# 10. REMOVE ID-LIKE COLUMNS
+# ============================================================
+
+id_like_columns = []
+
+for column in X.columns:
+
+    column_lower = column.lower()
+
+    if (
+        column_lower in ["loan_id", "id", "customer_id", "customerid"]
+        or column_lower.endswith("_id")
+    ):
+        id_like_columns.append(column)
+
+if id_like_columns:
+    X = X.drop(columns=id_like_columns)
+    print("\nRemoved ID-like columns:")
+    print(id_like_columns)
+
+
+# ============================================================
+# 11. CONVERT NUMERIC-LIKE COLUMNS
+# ============================================================
+
+for column in X.columns:
+
+    if X[column].dtype == "object":
+
+        cleaned = (
+            X[column]
+            .astype(str)
+            .str.strip()
+            .str.replace(",", "", regex=False)
+        )
+
+        numeric_version = pd.to_numeric(
+            cleaned,
+            errors="coerce"
+        )
+
+        # Convert to numeric if most values are numeric
+        valid_ratio = numeric_version.notna().mean()
+
+        if valid_ratio >= 0.80:
+            X[column] = numeric_version
+
+
+# ============================================================
+# 12. IDENTIFY NUMERIC AND CATEGORICAL FEATURES
+# ============================================================
+
+numeric_features = X.select_dtypes(
+    include=["int64", "int32", "float64", "float32"]
+).columns.tolist()
+
+categorical_features = X.select_dtypes(
+    include=["object", "category", "bool"]
+).columns.tolist()
+
+print("\nNumeric features:")
+print(numeric_features)
+
+print("\nCategorical features:")
+print(categorical_features)
+
+
+# ============================================================
+# 13. TRAIN TEST SPLIT
 # ============================================================
 
 X_train, X_test, y_train, y_test = train_test_split(
     X,
     y,
     test_size=0.20,
-    random_state=42,
+    random_state=RANDOM_STATE,
     stratify=y
 )
 
-print("\n" + "=" * 60)
-print("TRAIN TEST SPLIT")
-print("=" * 60)
-
-print("\nTraining samples:", len(X_train))
-print("Testing samples:", len(X_test))
+print("\nData split completed.")
+print(f"Training samples: {len(X_train)}")
+print(f"Testing samples: {len(X_test)}")
 
 
 # ============================================================
-# 5. TRAIN DECISION TREE CLASSIFIER
+# 14. DATA PREPROCESSING
+# ============================================================
+
+numeric_transformer = Pipeline(
+    steps=[
+        (
+            "imputer",
+            SimpleImputer(strategy="median")
+        )
+    ]
+)
+
+categorical_transformer = Pipeline(
+    steps=[
+        (
+            "imputer",
+            SimpleImputer(strategy="most_frequent")
+        ),
+        (
+            "onehot",
+            OneHotEncoder(
+                handle_unknown="ignore",
+                sparse_output=False
+            )
+        )
+    ]
+)
+
+preprocessor = ColumnTransformer(
+    transformers=[
+        (
+            "numeric",
+            numeric_transformer,
+            numeric_features
+        ),
+        (
+            "categorical",
+            categorical_transformer,
+            categorical_features
+        )
+    ],
+    remainder="drop"
+)
+
+
+# ============================================================
+# 15. CREATE DECISION TREE MODEL
+# ============================================================
+
+decision_tree = DecisionTreeClassifier(
+    criterion="gini",
+    max_depth=5,
+    min_samples_split=10,
+    min_samples_leaf=5,
+    random_state=RANDOM_STATE
+)
+
+model = Pipeline(
+    steps=[
+        (
+            "preprocessor",
+            preprocessor
+        ),
+        (
+            "classifier",
+            decision_tree
+        )
+    ]
+)
+
+
+# ============================================================
+# 16. TRAIN MODEL
 # ============================================================
 
 print("\n" + "=" * 60)
 print("TRAINING DECISION TREE")
 print("=" * 60)
 
-model = DecisionTreeClassifier(
-    criterion="gini",
-    max_depth=5,
-    random_state=42
-)
-
 model.fit(X_train, y_train)
 
-print("\nDecision Tree model trained successfully!")
+print("Decision Tree classifier trained successfully.")
 
 
 # ============================================================
-# 6. GENERATE PREDICTIONS
+# 17. GENERATE PREDICTIONS
 # ============================================================
 
 y_train_pred = model.predict(X_train)
 y_test_pred = model.predict(X_test)
 
-print("\nPredictions generated successfully!")
+print("Predictions generated successfully.")
 
 
 # ============================================================
-# 7. MODEL ACCURACY
+# 18. MODEL EVALUATION
 # ============================================================
 
-train_accuracy = accuracy_score(y_train, y_train_pred)
-test_accuracy = accuracy_score(y_test, y_test_pred)
+train_accuracy = accuracy_score(
+    y_train,
+    y_train_pred
+)
+
+test_accuracy = accuracy_score(
+    y_test,
+    y_test_pred
+)
+
+precision = precision_score(
+    y_test,
+    y_test_pred,
+    zero_division=0
+)
+
+recall = recall_score(
+    y_test,
+    y_test_pred,
+    zero_division=0
+)
+
+f1 = f1_score(
+    y_test,
+    y_test_pred,
+    zero_division=0
+)
+
 
 print("\n" + "=" * 60)
 print("MODEL PERFORMANCE")
 print("=" * 60)
 
-print(f"\nTraining Accuracy: {train_accuracy:.4f}")
-print(f"Testing Accuracy : {test_accuracy:.4f}")
+print(f"Training Accuracy : {train_accuracy:.4f}")
+print(f"Testing Accuracy  : {test_accuracy:.4f}")
+print(f"Precision         : {precision:.4f}")
+print(f"Recall            : {recall:.4f}")
+print(f"F1 Score          : {f1:.4f}")
 
 
 # ============================================================
-# 8. CLASSIFICATION REPORT
+# 19. CLASSIFICATION REPORT
 # ============================================================
 
-print("\n" + "=" * 60)
-print("CLASSIFICATION REPORT")
-print("=" * 60)
-
-print(classification_report(
-    y_test,
-    y_test_pred,
-    target_names=["Rejected", "Approved"]
-))
-
-
-# ============================================================
-# 9. CONFUSION MATRIX
-# ============================================================
-
-cm = confusion_matrix(y_test, y_test_pred)
-
-print("\n" + "=" * 60)
-print("CONFUSION MATRIX")
-print("=" * 60)
-
-print(cm)
-
-disp = ConfusionMatrixDisplay(
-    confusion_matrix=cm,
-    display_labels=["Rejected", "Approved"]
+print("\nClassification Report:")
+print(
+    classification_report(
+        y_test,
+        y_test_pred,
+        zero_division=0
+    )
 )
 
-disp.plot()
 
-plt.title("Loan Approval - Confusion Matrix")
+# ============================================================
+# 20. CONFUSION MATRIX
+# ============================================================
+
+cm = confusion_matrix(
+    y_test,
+    y_test_pred
+)
+
+print("\nConfusion Matrix:")
+print(cm)
+
+plt.figure(figsize=(7, 5))
+
+plt.imshow(cm, interpolation="nearest")
+
+plt.title("Day 17 - Loan Approval Confusion Matrix")
+plt.xlabel("Predicted Label")
+plt.ylabel("Actual Label")
+
+plt.xticks(
+    [0, 1],
+    ["Rejected", "Approved"]
+)
+
+plt.yticks(
+    [0, 1],
+    ["Rejected", "Approved"]
+)
+
+for i in range(cm.shape[0]):
+    for j in range(cm.shape[1]):
+        plt.text(
+            j,
+            i,
+            str(cm[i, j]),
+            ha="center",
+            va="center"
+        )
+
+plt.colorbar()
 plt.tight_layout()
 
 plt.savefig(
-    "day17_confusion_matrix.png",
+    CONFUSION_MATRIX_FILE,
     dpi=300,
     bbox_inches="tight"
 )
 
-plt.show()
+plt.close()
+
+print("Confusion matrix created successfully.")
 
 
 # ============================================================
-# 10. VISUALIZE DECISION TREE
+# 21. FEATURE NAMES AFTER PREPROCESSING
 # ============================================================
 
-print("\n" + "=" * 60)
-print("CREATING DECISION TREE VISUALIZATION")
-print("=" * 60)
+preprocessor_fitted = model.named_steps["preprocessor"]
 
-plt.figure(figsize=(24, 12))
+feature_names = []
 
-plot_tree(
-    model,
-    feature_names=X.columns,
-    class_names=["Rejected", "Approved"],
-    filled=True,
-    rounded=True,
-    fontsize=9
+# Numeric features
+feature_names.extend(numeric_features)
+
+# Categorical one-hot features
+if len(categorical_features) > 0:
+
+    onehot_encoder = (
+        preprocessor_fitted
+        .named_transformers_["categorical"]
+        .named_steps["onehot"]
+    )
+
+    categorical_feature_names = (
+        onehot_encoder
+        .get_feature_names_out(categorical_features)
+        .tolist()
+    )
+
+    feature_names.extend(
+        categorical_feature_names
+    )
+
+
+# ============================================================
+# 22. FEATURE IMPORTANCE
+# ============================================================
+
+classifier = model.named_steps["classifier"]
+
+importances = classifier.feature_importances_
+
+feature_importance_df = pd.DataFrame(
+    {
+        "Feature": feature_names,
+        "Importance": importances
+    }
 )
 
-plt.title("Decision Tree for Loan Approval Prediction")
-
-plt.savefig(
-    "day17_decision_tree.png",
-    dpi=300,
-    bbox_inches="tight"
+feature_importance_df = (
+    feature_importance_df
+    .sort_values(
+        by="Importance",
+        ascending=False
+    )
+    .reset_index(drop=True)
 )
 
-plt.show()
-
-print("Decision tree visualization saved successfully!")
-
-
-# ============================================================
-# 11. FEATURE IMPORTANCE
-# ============================================================
-
-print("\n" + "=" * 60)
-print("FEATURE IMPORTANCE ANALYSIS")
-print("=" * 60)
-
-feature_importance = pd.DataFrame({
-    "Feature": X.columns,
-    "Importance": model.feature_importances_
-})
-
-feature_importance = feature_importance.sort_values(
-    by="Importance",
-    ascending=False
+feature_importance_df.to_csv(
+    FEATURE_IMPORTANCE_FILE,
+    index=False
 )
 
-print("\nFeature importance:")
-print(feature_importance)
+print("\nFeature importance analysis completed.")
+
+print("\nTop 10 important features:")
+print(
+    feature_importance_df.head(10)
+)
 
 
 # ============================================================
-# 12. FEATURE IMPORTANCE VISUALIZATION
+# 23. FEATURE IMPORTANCE VISUALIZATION
 # ============================================================
+
+top_features = feature_importance_df.head(10)
 
 plt.figure(figsize=(10, 6))
 
-plt.bar(
-    feature_importance["Feature"],
-    feature_importance["Importance"]
+plt.barh(
+    top_features["Feature"][::-1],
+    top_features["Importance"][::-1]
 )
 
-plt.xlabel("Features")
-plt.ylabel("Importance")
-plt.title("Decision Tree Feature Importance")
+plt.xlabel("Importance")
+plt.ylabel("Feature")
 
-plt.xticks(rotation=45)
+plt.title(
+    "Day 17 - Decision Tree Feature Importance"
+)
+
 plt.tight_layout()
 
 plt.savefig(
-    "day17_feature_importance.png",
+    FEATURE_IMPORTANCE_IMAGE,
     dpi=300,
     bbox_inches="tight"
 )
 
-plt.show()
+plt.close()
 
-print("Feature importance visualization saved successfully!")
+print("Feature importance visualization created successfully.")
 
 
 # ============================================================
-# 13. OVERFITTING ANALYSIS
+# 24. DECISION TREE VISUALIZATION
+# ============================================================
+
+X_train_processed = preprocessor_fitted.transform(
+    X_train
+)
+
+plt.figure(figsize=(24, 14))
+
+plot_tree(
+    classifier,
+    feature_names=feature_names,
+    class_names=[
+        "Rejected",
+        "Approved"
+    ],
+    filled=True,
+    rounded=True,
+    fontsize=8
+)
+
+plt.title(
+    "Day 17 - Loan Approval Decision Tree"
+)
+
+plt.tight_layout()
+
+plt.savefig(
+    DECISION_TREE_FILE,
+    dpi=300,
+    bbox_inches="tight"
+)
+
+plt.close()
+
+print("Decision tree visualization created successfully.")
+
+
+# ============================================================
+# 25. OVERFITTING ANALYSIS
 # ============================================================
 
 print("\n" + "=" * 60)
 print("OVERFITTING ANALYSIS")
 print("=" * 60)
 
-depths = range(1, 11)
+depth_values = list(range(1, 16))
 
-train_scores = []
-test_scores = []
+training_scores = []
+testing_scores = []
 
-for depth in depths:
+for depth in depth_values:
 
-    temp_model = DecisionTreeClassifier(
+    temp_tree = DecisionTreeClassifier(
+        criterion="gini",
         max_depth=depth,
-        random_state=42
+        min_samples_split=10,
+        min_samples_leaf=5,
+        random_state=RANDOM_STATE
     )
 
-    temp_model.fit(X_train, y_train)
-
-    train_pred = temp_model.predict(X_train)
-    test_pred = temp_model.predict(X_test)
-
-    train_scores.append(
-        accuracy_score(y_train, train_pred)
+    temp_tree.fit(
+        X_train_processed,
+        y_train
     )
 
-    test_scores.append(
-        accuracy_score(y_test, test_pred)
+    train_score = temp_tree.score(
+        X_train_processed,
+        y_train
     )
 
-
-# Print accuracy for each depth
-
-for depth, train_score, test_score in zip(
-    depths,
-    train_scores,
-    test_scores
-):
-
-    print(
-        f"Depth {depth}: "
-        f"Train Accuracy = {train_score:.4f}, "
-        f"Test Accuracy = {test_score:.4f}"
+    X_test_processed = preprocessor_fitted.transform(
+        X_test
     )
 
+    test_score = temp_tree.score(
+        X_test_processed,
+        y_test
+    )
 
-# ============================================================
-# 14. PLOT OVERFITTING ANALYSIS
-# ============================================================
+    training_scores.append(
+        train_score
+    )
+
+    testing_scores.append(
+        test_score
+    )
+
 
 plt.figure(figsize=(10, 6))
 
 plt.plot(
-    list(depths),
-    train_scores,
+    depth_values,
+    training_scores,
     marker="o",
     label="Training Accuracy"
 )
 
 plt.plot(
-    list(depths),
-    test_scores,
+    depth_values,
+    testing_scores,
     marker="o",
     label="Testing Accuracy"
 )
 
 plt.xlabel("Tree Depth")
 plt.ylabel("Accuracy")
-plt.title("Decision Tree Overfitting Analysis")
+
+plt.title(
+    "Day 17 - Decision Tree Overfitting Analysis"
+)
 
 plt.legend()
 plt.grid(True)
@@ -388,117 +773,156 @@ plt.grid(True)
 plt.tight_layout()
 
 plt.savefig(
-    "day17_overfitting_analysis.png",
+    OVERFITTING_IMAGE,
     dpi=300,
     bbox_inches="tight"
 )
 
-plt.show()
+plt.close()
+
+print("Overfitting analysis completed.")
 
 
 # ============================================================
-# 15. FIND BEST TREE DEPTH
+# 26. IDENTIFY POSSIBLE OVERFITTING
 # ============================================================
 
-best_index = np.argmax(test_scores)
-best_depth = list(depths)[best_index]
-best_test_accuracy = test_scores[best_index]
+accuracy_gap = train_accuracy - test_accuracy
 
-print("\nBest Tree Depth:", best_depth)
-print(f"Best Test Accuracy: {best_test_accuracy:.4f}")
+print(f"\nTraining Accuracy : {train_accuracy:.4f}")
+print(f"Testing Accuracy  : {test_accuracy:.4f}")
+print(f"Accuracy Gap      : {accuracy_gap:.4f}")
 
+if accuracy_gap > 0.10:
 
-# ============================================================
-# 16. BUSINESS INTERPRETATION
-# ============================================================
+    overfitting_status = "Possible Overfitting"
 
-print("\n" + "=" * 60)
-print("BUSINESS INTERPRETATION")
-print("=" * 60)
+elif accuracy_gap > 0.05:
 
-print("""
-Decision Tree can help financial institutions make loan
-approval decisions using customer information.
+    overfitting_status = "Mild Overfitting"
 
-Important features can indicate which factors have the
-largest influence on loan approval.
+else:
 
-For example:
-- Higher credit score generally supports approval.
-- Higher income can improve loan eligibility.
-- Lower existing debt can reduce financial risk.
-- Longer employment history can indicate stability.
-- Higher savings can support repayment ability.
+    overfitting_status = "No Significant Overfitting"
 
-However, decision trees can overfit when the tree becomes
-too deep. Limiting max_depth helps control model complexity.
-""")
-
-
-# ============================================================
-# 17. SAVE FEATURE IMPORTANCE
-# ============================================================
-
-feature_importance.to_csv(
-    "day17_feature_importance.csv",
-    index=False
+print(
+    f"Overfitting Status: {overfitting_status}"
 )
 
-print("\nFeature importance saved successfully!")
-
 
 # ============================================================
-# 18. SAVE PREDICTION RESULTS
+# 27. SAVE PREDICTION RESULTS
 # ============================================================
 
 prediction_results = X_test.copy()
 
-prediction_results["Actual_Loan_Approved"] = y_test.values
-prediction_results["Predicted_Loan_Approved"] = y_test_pred
+prediction_results["Actual_Loan_Status"] = (
+    y_test.values
+)
+
+prediction_results["Predicted_Loan_Status"] = (
+    y_test_pred
+)
 
 prediction_results["Prediction_Correct"] = (
-    prediction_results["Actual_Loan_Approved"]
+    prediction_results["Actual_Loan_Status"]
     ==
-    prediction_results["Predicted_Loan_Approved"]
+    prediction_results["Predicted_Loan_Status"]
 )
 
 prediction_results.to_csv(
-    "day17_predictions.csv",
+    PREDICTIONS_FILE,
     index=False
 )
 
-print("Prediction results saved successfully!")
+print("\nPrediction results saved successfully.")
 
 
 # ============================================================
-# 19. SAVE MODEL RESULTS
+# 28. SAVE MODEL RESULTS
 # ============================================================
 
-model_results = pd.DataFrame({
-    "Model": ["Decision Tree Classifier"],
-    "Criterion": ["Gini"],
-    "Max_Depth": [5],
-    "Training_Accuracy": [train_accuracy],
-    "Testing_Accuracy": [test_accuracy],
-    "Best_Depth_From_Analysis": [best_depth],
-    "Best_Test_Accuracy": [best_test_accuracy]
-})
+model_results = pd.DataFrame(
+    {
+        "Metric": [
+            "Training Accuracy",
+            "Testing Accuracy",
+            "Precision",
+            "Recall",
+            "F1 Score",
+            "Accuracy Gap",
+            "Overfitting Status",
+            "Tree Depth",
+            "Number of Training Samples",
+            "Number of Testing Samples"
+        ],
+        "Value": [
+            train_accuracy,
+            test_accuracy,
+            precision,
+            recall,
+            f1,
+            accuracy_gap,
+            overfitting_status,
+            decision_tree.max_depth,
+            len(X_train),
+            len(X_test)
+        ]
+    }
+)
 
 model_results.to_csv(
-    "day17_model_results.csv",
+    MODEL_RESULTS_FILE,
     index=False
 )
 
-print("Model results saved successfully!")
+print("Model results saved successfully.")
 
 
 # ============================================================
-# 20. FINAL SUMMARY
+# 29. DISPLAY ERROR ANALYSIS
+# ============================================================
+
+false_positives = (
+    (y_test == 0)
+    &
+    (y_test_pred == 1)
+).sum()
+
+false_negatives = (
+    (y_test == 1)
+    &
+    (y_test_pred == 0)
+).sum()
+
+true_positives = (
+    (y_test == 1)
+    &
+    (y_test_pred == 1)
+).sum()
+
+true_negatives = (
+    (y_test == 0)
+    &
+    (y_test_pred == 0)
+).sum()
+
+
+print("\n" + "=" * 60)
+print("ERROR ANALYSIS")
+print("=" * 60)
+
+print(f"True Positives  : {true_positives}")
+print(f"True Negatives  : {true_negatives}")
+print(f"False Positives : {false_positives}")
+print(f"False Negatives : {false_negatives}")
+
+
+# ============================================================
+# 30. FINAL SUMMARY
 # ============================================================
 
 print("\n" + "=" * 60)
-print("DAY 17 SUMMARY")
-print("=" * 60)
 
 print("Loan approval dataset loaded successfully.")
 print("Decision Tree classifier trained successfully.")
