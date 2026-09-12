@@ -1,0 +1,10 @@
+Feature,Importance
+New_Device,0.34947506
+International_Transaction,0.22709933
+Failed_Attempts,0.12358004
+Distance_From_Home,0.07820905
+Online_Transaction,0.047926266
+Account_Age_Days,0.04656089
+Transaction_Amount,0.04613265
+Transaction_Hour,0.043050542
+Transaction_Frequency,0.037966177
