@@ -1,0 +1,37 @@
+DAY 21 - BEST MODEL ANALYSIS
+============================================================
+
+Selected Best Model: Logistic Regression
+Overall Score: 0.6649
+
+Evaluation Metrics:
+- Accuracy: 0.9200
+- Precision: 0.7083
+- Recall: 0.3400
+- F1 Score: 0.4595
+- ROC-AUC: 0.8967
+
+Best Model by Individual Metric:
+- Accuracy: Logistic Regression (0.9200)
+- Precision: Gradient Boosting (0.7368)
+- Recall: Random Forest (0.7400)
+- F1 Score: XGBoost (0.5115)
+- ROC-AUC: Logistic Regression (0.8967)
+
+Why this model was selected:
+1. It achieved the highest overall evaluation score.
+2. It provides a strong balance across multiple metrics.
+3. Model selection was based on more than accuracy alone.
+4. Multiple evaluation metrics were considered for a more reliable decision.
+
+Important Model Selection Trade-offs:
+- A model with high accuracy may still have poor recall.
+- Low recall can be a serious issue in fraud detection because fraudulent transactions may be missed.
+- High precision is useful when false positives are costly.
+- F1 Score provides a balance between precision and recall.
+- ROC-AUC helps evaluate the model's ability to distinguish between classes.
+- Interpretability and business requirements should also be considered before deployment.
+
+Fraud Detection Recommendation:
+For fraud detection, Recall and Precision are especially important because both missed fraud and false alarms can have business consequences.
+Therefore, the final production model should be selected using business requirements along with F1 Score, Recall, Precision and ROC-AUC.

@@ -1,0 +1,48 @@
+DAY 21 - WEEK 3 ENGINEERING REFLECTION
+======================================
+
+During Week 3, I worked with multiple Machine Learning
+classification models and learned how different algorithms
+approach prediction problems.
+
+I worked with Decision Tree, Random Forest and XGBoost
+models and compared their performance using multiple
+evaluation metrics.
+
+One of the most important lessons was that model selection
+should not depend only on accuracy.
+
+Precision, Recall, F1 Score and ROC-AUC can provide a much
+better understanding of model performance, especially for
+imbalanced classification problems such as fraud detection.
+
+For Day 21, I compared the available model results and
+selected:
+
+Best Model: Logistic Regression
+
+Overall Score: 0.6649
+
+The model selection process helped me understand the
+importance of balancing model performance with practical
+requirements.
+
+I also learned that different models have different
+strengths and weaknesses. A model that performs well on
+one metric may not necessarily be the best choice for
+another business requirement.
+
+For fraud detection, missing fraudulent transactions can
+be costly, so Recall is important. At the same time,
+excessive false positives can negatively affect legitimate
+customers, making Precision important as well.
+
+Overall, Week 3 improved my understanding of ensemble
+learning, boosting, model evaluation and practical model
+selection.
+
+The main lesson I learned is:
+
+"Choosing the right model is not just about the highest
+score. It is about choosing the model that best fits the
+problem and its real-world requirements."
