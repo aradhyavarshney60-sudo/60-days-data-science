@@ -1,0 +1,70 @@
+
+============================================================
+DAY 22 - FEATURE ENCODING PERFORMANCE REPORT
+============================================================
+
+Dataset:
+fraud_detection_dataset.csv
+
+Target Column:
+Fraud
+
+Original Number of Features:
+9
+
+Label Encoded Features:
+9
+
+One-Hot Encoded Features:
+9
+
+
+------------------------------------------------------------
+LABEL ENCODING
+------------------------------------------------------------
+
+Accuracy  : 0.9200
+Precision : 0.9084
+Recall    : 0.9200
+F1 Score  : 0.9071
+
+
+------------------------------------------------------------
+ONE-HOT ENCODING
+------------------------------------------------------------
+
+Accuracy  : 0.9200
+Precision : 0.9084
+Recall    : 0.9200
+F1 Score  : 0.9071
+
+
+------------------------------------------------------------
+BEST ENCODING
+------------------------------------------------------------
+
+Both performed similarly
+
+Best F1 Score:
+0.9071
+
+
+------------------------------------------------------------
+KEY OBSERVATION
+------------------------------------------------------------
+
+Categorical variables cannot be directly understood by most
+Machine Learning algorithms.
+
+Feature encoding converts categorical information into numerical
+representations that Machine Learning models can process.
+
+Label Encoding assigns an integer to each category.
+
+One-Hot Encoding creates separate binary columns for categories
+and avoids implying an artificial numerical order between them.
+
+The appropriate encoding technique depends on the type of
+categorical feature and the Machine Learning algorithm being used.
+
+============================================================

@@ -1,0 +1,49 @@
+
+Day 22/60
+
+Today I worked on Feature Encoding as part of my 60 Days of
+Data Science journey.
+
+I learned how categorical variables can be transformed into
+numerical representations that Machine Learning models can
+understand.
+
+I implemented both Label Encoding and One-Hot Encoding and
+compared their impact on a Logistic Regression baseline model.
+
+The comparison was performed using Accuracy, Precision, Recall,
+and F1 Score.
+
+One of the important things I learned is that preprocessing
+decisions can directly affect Machine Learning model performance.
+
+I also learned that Label Encoding can introduce an artificial
+ordering between categories, while One-Hot Encoding represents
+categories independently.
+
+Today's work helped me better understand the connection between
+data preprocessing, feature representation, and model performance.
+
+Day 22/60 completed.
+
+Best Encoding based on F1 Score:
+Both performed similarly
+
+F1 Score:
+0.9071
+
+#60DaysOfDataScience
+#DataScienceJourney
+#Python
+#DataScience
+#MachineLearning
+#FeatureEngineering
+#FeatureEncoding
+#LabelEncoding
+#OneHotEncoding
+#ScikitLearn
+#DataPreprocessing
+#MachineLearning
+#LearningInPublic
+#BuildInPublic
+#GitHub
