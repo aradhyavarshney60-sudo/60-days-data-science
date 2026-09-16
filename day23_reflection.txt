@@ -1,0 +1,34 @@
+DAY 23 REFLECTION
+=================
+
+Today I learned about Feature Selection in Machine Learning.
+
+The main objective was to identify important prediction signals
+and remove low-impact or unnecessary features.
+
+I analyzed feature importance using Random Forest and also
+studied correlations between features and the target variable.
+
+The baseline Logistic Regression model used
+9 features.
+
+After feature selection, the model used
+5 features.
+
+The F1 Score before feature selection was
+0.4595.
+
+The F1 Score after feature selection was
+0.3182.
+
+This exercise helped me understand that more features do not
+always mean a better Machine Learning model.
+
+Removing irrelevant features can reduce model complexity,
+improve interpretability, and make the model easier to analyze.
+
+I also learned that feature selection should be evaluated
+using multiple metrics instead of relying only on accuracy.
+
+Day 23 helped me understand how identifying the right signals
+in data can improve the Machine Learning workflow.

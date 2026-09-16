@@ -1,0 +1,41 @@
+DAY 23 - FEATURE SELECTION REPORT
+============================================================
+
+Dataset: fraud_detection_dataset.csv
+Target Column: Fraud
+Total Rows: 5000
+Features Before Selection: 9
+Features After Selection: 5
+
+SELECTED FEATURES
+------------------------------------------------------------
+Distance_From_Home: 0.201635
+New_Device: 0.165574
+Account_Age_Days: 0.134746
+Transaction_Amount: 0.128505
+Failed_Attempts: 0.100329
+
+REMOVED FEATURES
+------------------------------------------------------------
+Transaction_Hour
+Transaction_Frequency
+International_Transaction
+Online_Transaction
+
+MODEL PERFORMANCE
+------------------------------------------------------------
+Baseline Accuracy: 0.9200
+Selected Accuracy: 0.9100
+Baseline Precision: 0.7083
+Selected Precision: 0.6562
+Baseline Recall: 0.3400
+Selected Recall: 0.2100
+Baseline F1 Score: 0.4595
+Selected F1 Score: 0.3182
+Baseline ROC-AUC: 0.8967
+Selected ROC-AUC: 0.8654
+
+ANALYSIS
+------------------------------------------------------------
+Feature selection reduced F1 Score, showing that some removed features contained useful predictive information.
+Feature selection can reduce model complexity, remove noisy variables, and improve interpretability.
