@@ -1,0 +1,29 @@
+
+DAY 24 REFLECTION - PCA
+=======================
+
+Today I learned about Principal Component Analysis (PCA)
+and how it can be used for dimensionality reduction.
+
+The dataset originally contained 13373 features.
+
+I standardized the features and applied PCA to transform
+the data into 2 principal components.
+
+The first two principal components retained
+0.10% of the total variance.
+
+Before PCA, Logistic Regression achieved an
+F1 Score of 0.9970.
+
+After PCA, the F1 Score was 0.9520.
+
+This experiment helped me understand that PCA can
+compress high-dimensional data while preserving
+important patterns.
+
+I also learned that choosing too few components can
+remove useful information, so explained variance and
+model performance should both be considered.
+
+Another step completed in my Data Science journey.

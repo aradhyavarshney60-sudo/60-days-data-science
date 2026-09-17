@@ -1,0 +1,108 @@
+
+DAY 24 - PCA PERFORMANCE REPORT
+================================
+
+Dataset
+-------
+Input File: feature_engineered_train.csv
+
+Original Features: 13373
+
+PCA Features: 2
+
+Feature Reduction:
+99.99%
+
+
+PCA EXPLAINED VARIANCE
+----------------------
+
+PC1 Variance:
+0.06%
+
+PC2 Variance:
+0.05%
+
+Total Variance Retained by 2 Components:
+0.10%
+
+
+Variance Analysis
+-----------------
+
+Components calculated:
+50
+
+Variance retained by calculated components:
+2.22%
+
+Components required for 90% variance:
+Not reached within calculated components
+
+Components required for 95% variance:
+Not reached within calculated components
+
+
+MODEL PERFORMANCE
+=================
+
+BEFORE PCA
+----------
+
+Features:
+13373
+
+Accuracy:
+0.9969
+
+Precision:
+0.9971
+
+Recall:
+0.9969
+
+F1 Score:
+0.9970
+
+
+AFTER PCA
+---------
+
+Features:
+2
+
+Accuracy:
+0.9679
+
+Precision:
+0.9367
+
+Recall:
+0.9679
+
+F1 Score:
+0.9520
+
+
+CONCLUSION
+==========
+
+PCA reduced the feature space from
+13373 features to 2 principal components.
+
+The first two principal components retained
+0.10% of the total variance.
+
+Model performance was compared before and after
+dimensionality reduction.
+
+PCA can simplify high-dimensional datasets,
+reduce computational complexity and make data
+easier to visualize.
+
+However, reducing the number of components too
+aggressively may remove useful predictive information.
+
+Therefore, the number of PCA components should be
+selected based on the amount of variance retained
+and the requirements of the ML problem.
