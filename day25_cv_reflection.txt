@@ -1,0 +1,17 @@
+DAY 25 - CROSS-VALIDATION REFLECTION
+============================================================
+
+Objective:
+Evaluate model reliability using 5-fold cross-validation and compare it with train-test performance.
+
+Observations:
+1. Cross-validation provides performance across multiple data splits.
+2. Mean CV R2 represents average model performance across folds.
+3. CV standard deviation indicates performance variation between folds.
+4. The test R2 provides performance on the held-out test dataset.
+5. Comparing CV and test performance helps understand generalization behavior.
+6. Dimensionality reduction was used because the dataset contains a very large number of encoded features.
+
+Model with highest mean CV R2: Ridge Regression
+Mean CV R2: 0.1711
+CV Standard Deviation: 0.0380

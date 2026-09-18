@@ -1,0 +1,24 @@
+DAY 25 - CROSS-VALIDATION PERFORMANCE REPORT
+============================================================
+
+Dataset: train.csv
+Target: Sales
+Problem Type: regression
+Cross-Validation: 5-Fold
+SVD Components: 50
+
+MODEL COMPARISON
+------------------------------------------------------------
+                      Model Problem_Type  CV_Mean_R2  CV_Std_R2  Test_R2   Test_MAE  Test_RMSE
+           Ridge Regression   regression    0.171061   0.037976 0.170143 246.053315 744.765862
+    Random Forest Regressor   regression    0.091818   0.019553 0.079868 242.198625 784.229793
+Gradient Boosting Regressor   regression    0.109767   0.069954 0.106736 252.602804 772.695077
+
+BEST MODEL BASED ON MEAN CV R2
+------------------------------------------------------------
+Model: Ridge Regression
+Mean CV R2: 0.1711
+CV Standard Deviation: 0.0380
+Test R2: 0.1701
+Test MAE: 246.0533
+Test RMSE: 744.7659
