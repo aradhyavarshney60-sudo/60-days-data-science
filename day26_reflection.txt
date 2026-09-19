@@ -1,0 +1,15 @@
+DAY 26 - HYPERPARAMETER TUNING REFLECTION
+======================================================================
+
+Today I worked on hyperparameter tuning to optimize Machine Learning model performance.
+
+I used GridSearchCV with cross-validation to systematically evaluate different hyperparameter combinations.
+
+The main goal was to compare a baseline model with a tuned model and understand how hyperparameter selection affects model performance.
+
+The best parameters were selected using cross-validation rather than relying on a single train-test split.
+
+This task helped me understand that model optimization involves balancing predictive performance, validation reliability and computational cost.
+
+Best CV Score: -0.1696
+Test Metric Improvement: +0.0388

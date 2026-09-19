@@ -1,0 +1,10 @@
+DAY 26 - BEST HYPERPARAMETERS
+============================================================
+
+Problem Type: regression
+
+Best Parameters:
+model__alpha: 100.0
+model__solver: lsqr
+
+Best Cross-Validation Score: -0.1696

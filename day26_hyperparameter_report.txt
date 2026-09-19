@@ -1,0 +1,24 @@
+DAY 26 - HYPERPARAMETER TUNING REPORT
+======================================================================
+
+Dataset: day25_cv_dataset.csv
+Target: Sales
+Problem Type: regression
+Cross-Validation: 3-Fold
+
+BEST PARAMETERS
+--------------------------------------------------
+model__alpha: 100.0
+model__solver: lsqr
+
+Best CV Score: -0.1696
+
+MODEL COMPARISON
+--------------------------------------------------
+                    Model  R2 Score       RMSE        MAE
+Baseline Ridge Regression  0.037353 802.142686 308.165238
+   Tuned Ridge Regression  0.076111 785.828810 295.201026
+
+OPTIMIZATION OBSERVATION
+--------------------------------------------------
+Hyperparameter tuning improved the test performance of the model.
