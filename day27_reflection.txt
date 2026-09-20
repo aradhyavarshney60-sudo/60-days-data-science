@@ -1,0 +1,33 @@
+
+DAY 27 REFLECTION
+=================
+
+Today I studied the Bias-Variance Tradeoff in Machine Learning.
+
+I compared Decision Tree models with different levels of
+complexity using training and validation performance.
+
+The analysis showed how model complexity affects
+generalization.
+
+A model with low complexity can underfit the data because
+it may not capture enough patterns.
+
+As complexity increases, training performance generally
+improves. However, excessive complexity can increase the
+difference between training and validation performance,
+which is a common sign of overfitting.
+
+For this task, the model with max_depth = 2
+achieved the highest validation R2 of
+-0.0039 among the tested models.
+
+I also generated a learning curve to understand how model
+performance changes as the training dataset grows.
+
+The main lesson from Day 27 is that good Machine Learning
+models should not only perform well on training data.
+They should also generalize well to unseen data.
+
+This helped me understand the practical importance of
+balancing bias and variance while building ML systems.

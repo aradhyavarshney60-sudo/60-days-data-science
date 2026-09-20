@@ -1,0 +1,113 @@
+
+DAY 27 - BIAS VS VARIANCE REPORT
+================================
+
+Dataset
+-------
+Input Dataset       : day26_tuning_dataset.csv
+Rows Used           : 5000
+Features Used       : 2
+Target Column       : Sales
+
+Train-Test Split
+----------------
+Training Samples    : 4000
+Testing Samples     : 1000
+Test Size           : 20%
+Random State        : 42
+
+Bias-Variance Analysis
+----------------------
+
+Decision Tree models were evaluated using different
+maximum depths.
+
+
+Max Depth           : 2
+Training R2         : 0.0040
+Validation R2       : -0.0039
+R2 Gap              : 0.0079
+Training RMSE       : 601.1118
+Validation RMSE     : 732.1577
+Training MAE        : 257.5075
+Validation MAE      : 287.4176
+Behavior            : Underfitting
+
+Max Depth           : 4
+Training R2         : 0.0692
+Validation R2       : -0.0445
+R2 Gap              : 0.1137
+Training RMSE       : 581.0976
+Validation RMSE     : 746.8220
+Training MAE        : 253.1524
+Validation MAE      : 292.3115
+Behavior            : Underfitting
+
+Max Depth           : 6
+Training R2         : 0.4622
+Validation R2       : -0.9083
+R2 Gap              : 1.3706
+Training RMSE       : 441.6868
+Validation RMSE     : 1009.4481
+Training MAE        : 233.6502
+Validation MAE      : 302.9806
+Behavior            : Underfitting
+
+Max Depth           : 8
+Training R2         : 0.5644
+Validation R2       : -0.9206
+R2 Gap              : 1.4851
+Training RMSE       : 397.5051
+Validation RMSE     : 1012.6874
+Training MAE        : 216.3331
+Validation MAE      : 304.9761
+Behavior            : Underfitting
+
+Max Depth           : 12
+Training R2         : 0.7416
+Validation R2       : -1.0135
+R2 Gap              : 1.7552
+Training RMSE       : 306.1451
+Validation RMSE     : 1036.8895
+Training MAE        : 171.8747
+Validation MAE      : 321.7941
+Behavior            : Overfitting
+
+Max Depth           : 16
+Training R2         : 0.8660
+Validation R2       : -1.0576
+R2 Gap              : 1.9236
+Training RMSE       : 220.4727
+Validation RMSE     : 1048.1828
+Training MAE        : 105.8178
+Validation MAE      : 332.0954
+Behavior            : Overfitting
+
+Max Depth           : Unlimited
+Training R2         : 1.0000
+Validation R2       : -1.0538
+R2 Gap              : 2.0538
+Training RMSE       : 0.0000
+Validation RMSE     : 1047.2058
+Training MAE        : 0.0000
+Validation MAE      : 357.3517
+Behavior            : Overfitting
+
+
+Best Generalization
+-------------------
+Best Max Depth      : 2
+Training R2         : 0.0040
+Validation R2       : -0.0039
+R2 Gap              : 0.0079
+Behavior            : Underfitting
+
+Key Observations
+----------------
+1. Lower model complexity can lead to underfitting.
+2. Increasing model complexity can improve training performance.
+3. Excessive complexity can create a large training-validation gap.
+4. The training-validation gap is useful for identifying overfitting.
+5. Learning curves help analyze model generalization behavior.
+6. The objective is to find a model that generalizes well
+   rather than simply maximizing training performance.
