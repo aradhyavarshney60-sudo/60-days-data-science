@@ -1,0 +1,5 @@
+Model,Accuracy,Precision,Recall,F1
+Logistic Regression,1.0,1.0,1.0,1.0
+Random Forest,0.5,0.25,0.5,0.3333333333333333
+Gradient Boosting,1.0,1.0,1.0,1.0
+Extra Trees,1.0,1.0,1.0,1.0

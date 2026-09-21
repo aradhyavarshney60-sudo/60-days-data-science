@@ -1,0 +1,23 @@
+======================================================================
+DAY 28 - WEEK 4 OPTIMIZATION REFLECTION
+======================================================================
+
+1. What I built
+----------------------------------------------------------------------
+I built an optimized machine learning pipeline combining preprocessing, feature handling, model comparison and final evaluation.
+
+2. What I learned
+----------------------------------------------------------------------
+I learned that model performance depends not only on the algorithm but also on preprocessing, validation strategy and model configuration.
+
+3. Optimization process
+----------------------------------------------------------------------
+Multiple models were trained and evaluated using the same preprocessing pipeline. The final model was selected based on the evaluation metric appropriate for the problem type.
+
+4. Engineering tradeoffs
+----------------------------------------------------------------------
+More complex ensemble models can improve predictive performance but may require more computation and reduce interpretability compared with simpler models.
+
+5. Key takeaway
+----------------------------------------------------------------------
+A reliable ML system requires a reproducible pipeline rather than simply selecting a model with a high score.

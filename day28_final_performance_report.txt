@@ -1,0 +1,35 @@
+======================================================================
+DAY 28 - FINAL ML PERFORMANCE REPORT
+======================================================================
+
+Dataset: day27_bias_variance_analysis.csv
+Dataset Shape: (7, 9)
+Target Column: behavior
+Problem Type: classification
+
+FEATURE INFORMATION
+----------------------------------------------------------------------
+Numeric Features: 7
+Categorical Features: 1
+Training Samples: 5
+Testing Samples: 2
+
+MODEL COMPARISON
+----------------------------------------------------------------------
+              Model  Accuracy  Precision  Recall       F1
+Logistic Regression       1.0       1.00     1.0 1.000000
+      Random Forest       0.5       0.25     0.5 0.333333
+  Gradient Boosting       1.0       1.00     1.0 1.000000
+        Extra Trees       1.0       1.00     1.0 1.000000
+
+FINAL SELECTED MODEL
+----------------------------------------------------------------------
+Model: Logistic Regression
+Accuracy: 1.0000
+Precision: 1.0000
+Recall: 1.0000
+F1 Score: 1.0000
+
+ENGINEERING TRADEOFFS
+----------------------------------------------------------------------
+The final pipeline combines preprocessing, missing-value handling, categorical encoding, feature scaling, model training and evaluation into a reproducible workflow.
