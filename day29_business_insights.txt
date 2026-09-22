@@ -1,0 +1,60 @@
+DAY 29 - CUSTOMER SEGMENTATION REPORT
+======================================================================
+
+Dataset: WA_FnUseC_TelcoCustomerChurn.csv
+Number of customers: 7043
+Number of numerical features: 3
+Selected number of clusters: 6
+Best silhouette score: 0.4724
+
+FEATURES USED
+----------------------------------------------------------------------
+- SeniorCitizen
+- tenure
+- MonthlyCharges
+
+CLUSTER DISTRIBUTION
+----------------------------------------------------------------------
+Cluster 0: 513 customers (7.28%)
+Cluster 1: 1047 customers (14.87%)
+Cluster 2: 1766 customers (25.07%)
+Cluster 3: 1538 customers (21.84%)
+Cluster 4: 629 customers (8.93%)
+Cluster 5: 1550 customers (22.01%)
+
+CLUSTER PROFILES
+----------------------------------------------------------------------
+         SeniorCitizen  tenure  MonthlyCharges
+Cluster                                       
+0                  1.0   56.82           87.90
+1                  0.0   54.00           32.97
+2                  0.0   14.93           79.30
+3                  0.0   10.12           31.02
+4                  1.0   14.11           73.23
+5                  0.0   59.03           92.06
+
+BUSINESS INSIGHTS
+----------------------------------------------------------------------
+
+Cluster 0:
+  Higher-than-average features: SeniorCitizen, tenure, MonthlyCharges
+
+Cluster 1:
+  Higher-than-average features: tenure
+  Lower-than-average features: SeniorCitizen, MonthlyCharges
+
+Cluster 2:
+  Higher-than-average features: MonthlyCharges
+  Lower-than-average features: SeniorCitizen, tenure
+
+Cluster 3:
+  Lower-than-average features: SeniorCitizen, tenure, MonthlyCharges
+
+Cluster 4:
+  Higher-than-average features: SeniorCitizen
+  Lower-than-average features: tenure
+
+Cluster 5:
+  Higher-than-average features: tenure, MonthlyCharges
+  Lower-than-average features: SeniorCitizen
+

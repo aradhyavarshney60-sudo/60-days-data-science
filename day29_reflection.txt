@@ -1,0 +1,45 @@
+DAY 29 REFLECTION
+=================
+
+Today I worked on customer segmentation using K-Means clustering.
+
+The main objective was to understand how unsupervised learning
+can be used to identify hidden groups of customers based on
+their numerical behavior patterns.
+
+What I worked on:
+- Loaded and explored a customer behavior dataset
+- Selected relevant numerical features
+- Scaled the features using StandardScaler
+- Tested multiple K values
+- Compared inertia and silhouette scores
+- Selected K = 6
+- Applied the final K-Means model
+- Assigned customers to different clusters
+- Visualized the customer segments
+- Generated cluster profiles
+- Created business-oriented insights
+
+Key learning:
+
+K-Means clustering can group customers without requiring
+predefined customer labels.
+
+Feature scaling is important because variables with larger
+numerical ranges can otherwise influence the clustering process.
+
+Testing different cluster counts helped me understand that
+choosing K is an important part of clustering analysis.
+
+The silhouette score provided a way to compare the quality
+of different clustering configurations.
+
+I also learned that clustering results need to be interpreted
+from a business perspective rather than looking only at the
+cluster labels.
+
+Overall, Day 29 helped me understand the practical use of
+unsupervised learning for customer segmentation and business
+analysis.
+
+Day 29/60 completed.
