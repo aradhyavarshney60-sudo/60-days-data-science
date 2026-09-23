@@ -1,0 +1,66 @@
+DAY 30 - CUSTOMER SEGMENTATION STRATEGY
+============================================================
+
+Dataset Size: 7,043 customers
+Features Used: SeniorCitizen, tenure, MonthlyCharges
+Tested K Values: 2 to 10
+Selected K: 6
+Best Silhouette Score: 0.4724
+
+CLUSTER DISTRIBUTION
+------------------------------------------------------------
+Cluster 0: 513 customers (7.28%)
+Cluster 1: 1,047 customers (14.87%)
+Cluster 2: 1,766 customers (25.07%)
+Cluster 3: 1,538 customers (21.84%)
+Cluster 4: 629 customers (8.93%)
+Cluster 5: 1,550 customers (22.01%)
+
+CLUSTER CHARACTERISTICS
+------------------------------------------------------------
+
+Cluster 0
+  SeniorCitizen: 1.00
+  tenure: 56.82
+  MonthlyCharges: 87.90
+
+Cluster 1
+  SeniorCitizen: 0.00
+  tenure: 54.00
+  MonthlyCharges: 32.97
+
+Cluster 2
+  SeniorCitizen: 0.00
+  tenure: 14.93
+  MonthlyCharges: 79.30
+
+Cluster 3
+  SeniorCitizen: 0.00
+  tenure: 10.12
+  MonthlyCharges: 31.02
+
+Cluster 4
+  SeniorCitizen: 1.00
+  tenure: 14.11
+  MonthlyCharges: 73.23
+
+Cluster 5
+  SeniorCitizen: 0.00
+  tenure: 59.03
+  MonthlyCharges: 92.06
+
+BUSINESS INTERPRETATION
+------------------------------------------------------------
+The customer base was divided into 6 segments using K-Means clustering.
+The Elbow Method was used to examine the relationship between cluster count and within-cluster variation.
+Silhouette Score was used to evaluate cluster separation and cohesion.
+The selected clustering configuration provides a data-driven segmentation framework for customer analysis.
+
+POTENTIAL BUSINESS USES
+------------------------------------------------------------
+1. Personalized marketing campaigns
+2. Customer targeting
+3. Customer retention strategies
+4. Product recommendations
+5. Customer behavior analysis
+6. Segment-specific business strategies
