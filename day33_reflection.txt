@@ -1,0 +1,39 @@
+DAY 33 - REFLECTION
+============================================================
+
+Topic:
+Detecting Unusual Customer Behavior
+
+Today I worked on anomaly detection using customer behavioral data.
+
+Key work completed:
+- Inspected customer behavioral data
+- Selected numerical features
+- Standardized behavioral features
+- Applied Isolation Forest
+- Identified normal and anomalous customers
+- Compared normal and anomalous behavior
+- Created anomaly visualizations
+- Documented potential business risks
+
+Key Learning:
+
+I learned how anomaly detection can be used to identify unusual
+customer behavior patterns.
+
+I also learned that machine learning can help businesses identify
+potentially suspicious or unusual observations that may require
+additional investigation.
+
+Important Insight:
+
+An anomaly does not automatically mean that a customer is fraudulent
+or problematic. It indicates that the behavior is different from the
+patterns learned by the model and should be investigated using
+appropriate business context.
+
+Day 33 completed successfully.
+
+Total customers analyzed: 7043
+Anomalies detected: 353
+Anomaly rate: 5.01%
