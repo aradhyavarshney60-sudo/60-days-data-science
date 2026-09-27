@@ -1,0 +1,34 @@
+
+DAY 34 - BUSINESS INSIGHT SUMMARY
+===================================
+
+Executive Customer Analytics Dashboard
+
+Key Findings
+------------
+
+• The segment contributing the highest total revenue is Regular.
+• The segment with the highest observed churn rate is Regular.
+• The segment with the highest average engagement is High Value.
+• Overall observed churn rate is 36.4%.
+• Average customer engagement score is 59.8.
+• Average customer spend is $1,968.55.
+
+
+Dashboard Components
+--------------------
+1. Executive KPI cards
+2. Customer segmentation analysis
+3. Revenue contribution by segment
+4. Churn analysis
+5. Churn rate by segment
+6. Engagement vs spending analysis
+7. Customer satisfaction distribution
+8. Activity and engagement analysis
+9. Customer-level data table
+10. Business decision support
+
+Purpose
+-------
+The dashboard converts customer-level analytics into
+business-friendly visual insights for executive decision-making.

@@ -1,0 +1,35 @@
+
+DAY 34 REFLECTION
+=================
+
+Today I worked on designing an executive-level customer
+analytics dashboard.
+
+Key Learning
+------------
+
+1. Learned how to create KPI cards for business metrics.
+2. Learned how to visualize customer segmentation.
+3. Learned how to analyze churn patterns.
+4. Learned how to build interactive Plotly visualizations.
+5. Learned how Streamlit can be used to create analytics dashboards.
+6. Learned how to convert data science outputs into
+   business-friendly insights.
+
+Business Understanding
+----------------------
+
+The dashboard demonstrates how customer behavior,
+segmentation, engagement and churn metrics can be presented
+in a format that supports business analysis and decision-making.
+
+Tools Used
+----------
+
+Python
+Pandas
+NumPy
+Streamlit
+Plotly
+
+Day 34/60 completed.
