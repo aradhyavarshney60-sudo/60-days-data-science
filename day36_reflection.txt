@@ -1,0 +1,45 @@
+
+DAY 36/60 - FORECASTING CUSTOMER GROWTH TRENDS
+================================================
+
+Objective:
+Analyze historical customer growth and forecast future customer
+growth for the next 30 days.
+
+What I worked on:
+- Loaded historical customer data
+- Processed date-based information
+- Created a continuous daily time series
+- Visualized customer growth trends
+- Calculated a 7-day moving average
+- Analyzed overall customer growth
+- Built a baseline linear trend forecasting model
+- Added simple weekday seasonality
+- Generated a 30-day customer growth forecast
+- Visualized historical and forecasted values
+- Documented business applications and forecasting risks
+
+Historical Analysis:
+Starting customer value: 56.00
+Latest customer value: 50.00
+Overall growth: -10.71%
+
+Forecast Analysis:
+Forecast Day 1: 42.00
+Forecast Day 30: 32.00
+Expected forecast growth: -23.81%
+
+Key Learning:
+I learned how time series data can be used to identify historical
+growth patterns and generate future business forecasts.
+
+I also learned that forecasting is an estimation process and
+future results can differ because of unexpected market conditions,
+customer behavior, and external business factors.
+
+Business Application:
+Customer growth forecasting can support resource planning,
+marketing decisions, staffing, demand planning, and strategic
+business decisions.
+
+Day 36/60 completed.
