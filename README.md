@@ -62,3 +62,40 @@ The cleaned dataset was successfully saved as:
 ### Conclusion
 
 The dataset was cleaned by handling missing values, removing duplicate records, checking data types, and fixing date formats. The cleaned dataset is now ready for further Data Science analysis.
+
+---
+
+# Day 44: Interactive Customer Intelligence Dashboard
+
+## Objective
+
+Built an interactive customer intelligence dashboard using Streamlit, Pandas and Plotly.
+
+The dashboard is designed to help understand customer behavior, business KPIs, customer segmentation and churn-related insights.
+
+## Features
+
+- Interactive customer analytics dashboard
+- KPI cards for business performance
+- Customer segmentation analysis
+- Churn analysis
+- Interactive Plotly visualizations
+- Customer data filtering
+- CSV data upload support
+- Download filtered customer data
+- Business-friendly dashboard interface
+
+## Technologies Used
+
+- Python
+- Streamlit
+- Pandas
+- NumPy
+- Plotly
+
+## How to Run
+
+Install the required libraries:
+
+```bash
+pip install streamlit pandas numpy plotly
