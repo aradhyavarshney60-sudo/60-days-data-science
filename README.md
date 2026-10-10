@@ -99,3 +99,24 @@ Install the required libraries:
 
 ```bash
 pip install streamlit pandas numpy plotly
+## Day 47: Customer Intelligence Capstone Planning 🚀
+
+Started planning the end-to-end Customer Intelligence Platform capstone project.
+
+### What I Completed
+- Defined the business problem and project objectives.
+- Created the capstone proposal document.
+- Documented the proposed system architecture.
+- Prepared the Day 47–60 project roadmap.
+- Identified the main modules: churn prediction, customer segmentation, API, dashboard, and monitoring.
+
+### Project Files
+- `day47_capstone_proposal.md` — Business problem, objectives, scope, and success criteria.
+- `day47_architecture.md` — System components, architecture flow, and technology stack.
+- `day47_roadmap.md` — Planned development milestones from Day 47 to Day 60.
+
+### Technologies
+Python, Pandas, NumPy, Scikit-learn, FastAPI, Streamlit, Plotly, Git, and GitHub.
+
+### Key Learning
+A successful data science product starts with a clearly defined business problem, a planned architecture, and a realistic implementation roadmap.
