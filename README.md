@@ -120,3 +120,33 @@ Python, Pandas, NumPy, Scikit-learn, FastAPI, Streamlit, Plotly, Git, and GitHub
 
 ### Key Learning
 A successful data science product starts with a clearly defined business problem, a planned architecture, and a realistic implementation roadmap.
+## Day 48: Customer Intelligence Data Pipeline 🚀
+
+Built a reusable data preprocessing pipeline for the Customer Intelligence Platform.
+
+### What I Completed
+- Loaded and inspected the Telco Customer Churn dataset.
+- Checked and removed duplicate records.
+- Converted `TotalCharges` to a numeric data type.
+- Handled missing values using `SimpleImputer`.
+- Scaled numerical features using `StandardScaler`.
+- Encoded categorical features using `OneHotEncoder`.
+- Built reusable preprocessing workflows with `Pipeline` and `ColumnTransformer`.
+- Exported the processed dataset to CSV.
+
+### Results
+- Dataset records processed: 7,043
+- Duplicate rows detected: 0
+- Processed dataset shape: 7,043 rows × 47 columns
+- Missing values remaining: 0
+
+### Project Files
+- `day48_pipeline.py` — Preprocessing pipeline implementation.
+- `day48_pipeline_report.md` — Pipeline architecture and results.
+- `day48_cleaned_customer_churn.csv` — Processed dataset.
+
+### Technologies
+Python, Pandas, Scikit-learn, SimpleImputer, StandardScaler, OneHotEncoder, Pipeline, and ColumnTransformer.
+
+### Key Learning
+Reusable preprocessing pipelines improve consistency and make machine learning workflows easier to maintain. For reliable model evaluation, preprocessing must be fitted on training data only.
