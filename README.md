@@ -150,3 +150,23 @@ Python, Pandas, Scikit-learn, SimpleImputer, StandardScaler, OneHotEncoder, Pipe
 
 ### Key Learning
 Reusable preprocessing pipelines improve consistency and make machine learning workflows easier to maintain. For reliable model evaluation, preprocessing must be fitted on training data only.
+## Day 49: Customer Intelligence Baseline Prototype 🚀
+
+Built the first working baseline prototype for the Customer Intelligence Platform.
+
+### What I Completed
+- Loaded the existing churn prediction model.
+- Generated predictions for 7,043 customer records.
+- Saved customer-level prediction outputs.
+- Created a prototype analysis report.
+- Calculated an initial source-dataset accuracy of 75.01%.
+
+### Project Files
+- `day49_capstone.py` — Baseline prediction prototype.
+- `day49_prediction_outputs.csv` — Customer-level predictions.
+- `day49_prototype_report.md` — Prototype analysis and limitations.
+
+### Key Learning
+Integrating existing ML models into a working prototype is an important step toward building an end-to-end analytics system. Independent testing is still required to evaluate generalization.
+
+**Tools:** Python, Pandas, Scikit-learn, Joblib, Git & GitHub.
