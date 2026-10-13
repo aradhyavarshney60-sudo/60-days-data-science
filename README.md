@@ -170,3 +170,28 @@ Built the first working baseline prototype for the Customer Intelligence Platfor
 Integrating existing ML models into a working prototype is an important step toward building an end-to-end analytics system. Independent testing is still required to evaluate generalization.
 
 **Tools:** Python, Pandas, Scikit-learn, Joblib, Git & GitHub.
+## Day 50: Customer Intelligence Model Optimization 🚀
+
+Optimized and compared multiple Machine Learning models for the Customer Intelligence Platform.
+
+### What I Completed
+- Built a reusable preprocessing and modeling pipeline.
+- Compared Dummy Classifier, Logistic Regression, Random Forest, and Gradient Boosting.
+- Applied GridSearchCV to tune Logistic Regression.
+- Evaluated models using accuracy, precision, recall, and weighted F1-score.
+- Generated a model comparison report and confusion matrix.
+
+### Results
+- Best model: Gradient Boosting
+- Test accuracy: 80.62%
+- Weighted F1-score: 79.79%
+
+### Output Files
+- `day50_model_comparison.csv`
+- `day50_confusion_matrix.png`
+- `day50_optimization_report.md`
+
+### Key Learning
+Model selection requires comparing multiple algorithms using held-out data and appropriate evaluation metrics. Hyperparameter tuning does not guarantee improved performance.
+
+**Tools:** Python, Pandas, Scikit-learn, Matplotlib, Git & GitHub.
