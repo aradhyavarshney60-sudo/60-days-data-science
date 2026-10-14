@@ -195,3 +195,25 @@ Optimized and compared multiple Machine Learning models for the Customer Intelli
 Model selection requires comparing multiple algorithms using held-out data and appropriate evaluation metrics. Hyperparameter tuning does not guarantee improved performance.
 
 **Tools:** Python, Pandas, Scikit-learn, Matplotlib, Git & GitHub.
+## Day 51: Explainable AI for Customer Churn 🔍
+
+Implemented Explainable AI techniques to understand the key factors influencing customer churn predictions.
+
+### What I Completed
+- Trained a Gradient Boosting classifier.
+- Analyzed feature importance.
+- Used SHAP to explain model behavior.
+- Generated feature importance and SHAP visualizations.
+- Created a business interpretation report.
+
+### Output Files
+- `day51_outputs/day51_feature_importance.csv`
+- `day51_outputs/day51_feature_importance.png`
+- `day51_outputs/day51_shap_importance.csv`
+- `day51_outputs/day51_shap_summary.png`
+- `day51_outputs/day51_business_interpretation_report.md`
+
+### Key Learning
+Explainable AI helps interpret model predictions and identify important features. SHAP insights can support business decisions, but they do not prove causation.
+
+**Tools:** Python, Pandas, Scikit-learn, SHAP, Matplotlib, Git & GitHub.
