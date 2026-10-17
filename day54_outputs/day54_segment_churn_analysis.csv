@@ -1,0 +1,17 @@
+Feature,Segment,ChurnRatePercent
+Contract,Month-to-month,42.71
+Contract,One year,11.27
+Contract,Two year,2.83
+InternetService,Fiber optic,41.89
+InternetService,DSL,18.96
+InternetService,No,7.4
+PaymentMethod,Electronic check,45.29
+PaymentMethod,Mailed check,19.11
+PaymentMethod,Bank transfer (automatic),16.71
+PaymentMethod,Credit card (automatic),15.24
+TechSupport,No,41.64
+TechSupport,Yes,15.17
+TechSupport,No internet service,7.4
+OnlineSecurity,No,41.77
+OnlineSecurity,Yes,14.61
+OnlineSecurity,No internet service,7.4
