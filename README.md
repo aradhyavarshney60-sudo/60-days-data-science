@@ -217,3 +217,127 @@ Implemented Explainable AI techniques to understand the key factors influencing 
 Explainable AI helps interpret model predictions and identify important features. SHAP insights can support business decisions, but they do not prove causation.
 
 **Tools:** Python, Pandas, Scikit-learn, SHAP, Matplotlib, Git & GitHub.
+# Customer Intelligence Platform
+
+An end-to-end Customer Intelligence Platform focused on customer churn prediction, analytics, explainable AI, and business recommendations.
+
+## Project Overview
+
+This project combines machine learning and analytics workflows to help analyze customer churn patterns and support data-driven retention decisions.
+
+## Key Features
+
+- **Churn Prediction API:** FastAPI-based prediction workflow.
+- **Analytics Dashboard:** Streamlit-based customer analytics.
+- **Model Optimization:** Comparison of machine learning models and evaluation metrics.
+- **Explainable AI:** Feature importance and SHAP-based analysis.
+- **Real-Time Prediction Interface:** Interactive customer inputs with API-connected predictions.
+- **Business Insights:** Churn visualizations, executive reporting, and recommendations.
+- **Performance Testing:** API latency, batch prediction, and invalid-input validation.
+
+## Technology Stack
+
+Python, Pandas, Scikit-learn, Streamlit, FastAPI, Requests, Matplotlib, SHAP, Git, and GitHub.
+
+## Repository Structure
+
+| File | Purpose |
+|---|---|
+| `day43_api.py` | Churn prediction API |
+| `day44.py` | Streamlit analytics dashboard |
+| `day49_capstone.py` | Churn prediction prototype |
+| `day50_optimization.py` | Model optimization and comparison |
+| `day51_explainable_ai.py` | Explainable AI analysis |
+| `day53.py` | Real-time prediction interface |
+| `day54_business_insights.py` | Business insights and visualizations |
+| `day55_performance_test.py` | API performance and reliability tests |
+
+Additional reports and generated outputs are available in the corresponding project files and output folders.
+
+## Prerequisites
+
+- Python 3.10 or later
+- Git
+- pip
+
+## Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/aradhyavarshney60-sudo/60-days-data-science.git
+cd 60-days-data-science
+```
+
+Install dependencies:
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+If a required package is missing, install it separately using pip.
+
+## Running the Applications
+
+### Streamlit Dashboard
+
+```bash
+python -m streamlit run day44.py
+```
+
+### Real-Time Prediction Interface
+
+```bash
+python -m streamlit run day53.py
+```
+
+### FastAPI Prediction Service
+
+```bash
+python -m uvicorn day43_api:app --host 127.0.0.1 --port 8000
+```
+
+Open the interactive API documentation at:
+
+`http://127.0.0.1:8000/docs`
+
+Run the API in a separate terminal before using the real-time prediction interface.
+
+## API Usage
+
+The API exposes a prediction endpoint used by the application. Open `/docs` to inspect the actual request schema and available endpoints before sending requests.
+
+Example request structure will depend on the schema defined in `day43_api.py`.
+
+## Data and Model
+
+The project uses the Telco Customer Churn dataset and an existing trained model artifact. Ensure the required dataset and model files are available locally before running the relevant scripts.
+
+## Testing and Validation
+
+The performance testing workflow checks API health, individual predictions, batch requests, and invalid-input handling.
+
+Benchmark results are environment-dependent and should not be treated as production performance guarantees.
+
+## Limitations
+
+- Predictions are estimates, not guarantees.
+- Model performance should be validated on representative unseen data.
+- Local latency tests do not establish production scalability.
+- Deployment requires environment-specific configuration and additional testing.
+
+## Future Improvements
+
+- Expand automated testing.
+- Improve deployment and configuration management.
+- Add monitoring and structured logging.
+- Evaluate performance under concurrent load.
+- Improve dashboard usability and documentation.
+
+## Author
+
+Developed as part of the 60 Days of Data Science Challenge.
+
+## Repository
+
+[GitHub Repository](https://github.com/aradhyavarshney60-sudo/60-days-data-science)
